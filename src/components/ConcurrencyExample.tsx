@@ -4,7 +4,7 @@ const worker = new Worker(new URL("./webworker.ts", import.meta.url));
 
 export default function ConcurrencyExample() {
   const [data, setData] = useState<any[]>([]);
-  
+
   useEffect(() => {
     //that call will execute in parallel with the promise.all
     callWebWorker()
@@ -17,14 +17,9 @@ export default function ConcurrencyExample() {
       setData((prev) => [data1, data2, data])
     });
   }, [])
-  
-  const getWebWorkerData: () => Promise<any> = async () => {
-    return new Promise((resolve) => {
-      worker.onmessage = async (e) => {
-        resolve(e.data);
-      }
-    })
-  }
+
+  const getWebWorkerData = (): Promise<any> =>
+    new Promise(resolve => worker.onmessage = e => resolve(e.data));
 
   const callWebWorker = async () => {
     worker.postMessage({ url: 'https://api.example.com/data3' });
