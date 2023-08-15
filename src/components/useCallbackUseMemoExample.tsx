@@ -5,8 +5,13 @@ type Task = {
     title: string;
     completed: boolean;
 };
+export enum Permissions {
+    READ = "READ",
+    Write = "WRITE",
+}
 type Props = {
-    userId: string
+    userId: string;
+    permission: Permissions;
 }
 const usersTasks: any = {
     '1': [
@@ -16,15 +21,15 @@ const usersTasks: any = {
         { id: 4, title: 'Task 4', completed: false },
     ]
 }
-// Simple example assuming we receiving props that are not related to the component state
-const UseCallbackUseMemoExample: FunctionComponent<Props> = ({ userId }) => {
+// Simple example assuming we receiving props that are not related to the component computation
+const UseCallbackUseMemoExample: FunctionComponent<Props> = ({ userId, permission }) => {
     const [tasks, setTasks] = useState<Task[]>([]);
     useEffect(() => {
         // we will imagine that here we will fire get request to the server
         setTasks(usersTasks[userId])
     }, [userId])
     const completedTasks = useMemo(() => {
-        //if we will not use memo on each render we will generate new list
+        //if we will not use memo on each render we will recompute the completed Tasks
         return tasks.filter(task => task.completed);
     }, [tasks]);
 
@@ -37,11 +42,13 @@ const UseCallbackUseMemoExample: FunctionComponent<Props> = ({ userId }) => {
         );
     }, []);
 
+    const canModify = permission === Permissions.Write;
     return (
         <>
             <h2>Completed Tasks: {completedTasks.length}</h2>
+            {/**If this is a heavy list we will consider to optimize to part to, but for the simple example its ok :) */}
             {tasks.map(task => (
-                <button key={task.id} onClick={() => toggleCompletion(task.id)}>
+                <button disabled={!canModify} key={task.id} onClick={() => toggleCompletion(task.id)}>
                     {task.title} - Click to {task.completed ? 'completed' : 'incomplete'}
                 </button>
             ))}

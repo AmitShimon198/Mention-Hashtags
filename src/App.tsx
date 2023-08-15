@@ -2,7 +2,8 @@ import React, { useReducer, useRef } from 'react';
 import './App.css'
 import RefExample, { RefHandler } from './components/RefExample';
 import TransitionExample from './components/TransitionExmple';
-import UseCallbackUseMemoExample from './components/useCallbackUseMemoExample';
+import UseCallbackUseMemoExample, { Permissions } from './components/useCallbackUseMemoExample';
+import EnhancedUserProfile from './components/HOCExample';
 function reducer(_: any, { type, payload }: any) {
   switch (type) {
     case 1:
@@ -26,7 +27,8 @@ function App() {
   return (
     <div className="container">
       {/* <TransitionExample /> */}
-      <UseCallbackUseMemoExample userId={'1'}/>
+      {/* <UseCallbackUseMemoExample permission={Permissions.READ} userId={'1'}/> */}
+      <EnhancedUserProfile userName={'amit'} pass={'pass'}/>
       {/* <RefExample ref={ref} />
       <button
         onClick={() => ref.current?.exampleFunc(exampleFunc)}>

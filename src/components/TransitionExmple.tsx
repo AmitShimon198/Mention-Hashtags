@@ -2,8 +2,6 @@ import React, { useDeferredValue, useState, useTransition } from 'react'
 
 const bigArray = [...Array(20000).keys()];
 
-
-
 export default function TransitionExample() {
     const [isPending, startTransition] = useTransition();
     const [input, setInput] = useState<string>('');
