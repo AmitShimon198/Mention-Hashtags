@@ -4,6 +4,7 @@ import RefExample, { RefHandler } from './components/RefExample';
 import TransitionExample from './components/TransitionExmple';
 import UseCallbackUseMemoExample, { Permissions } from './components/useCallbackUseMemoExample';
 import EnhancedUserProfile from './components/HOCExample';
+import WhatsAppContactShareButton from './WhatsAppContactShareButton';
 function reducer(_: any, { type, payload }: any) {
   switch (type) {
     case 1:
@@ -25,16 +26,25 @@ function App() {
   // const [value, dispatch] = useReducer<ReducerType>(reducer, '');
   // const exampleFunc = (value: string): void => dispatch({ type: Math.floor(Math.random() * 4) + 1, payload: value });
   return (
+    
     <div className="container">
       {/* <TransitionExample /> */}
       {/* <UseCallbackUseMemoExample permission={Permissions.READ} userId={'1'}/> */}
-      <EnhancedUserProfile userName={'amit'} pass={'pass'}/>
+      {/* <EnhancedUserProfile userName={'amit'} pass={'pass'}/> */}
       {/* <RefExample ref={ref} />
       <button
         onClick={() => ref.current?.exampleFunc(exampleFunc)}>
         Random Action
       </button>
       {value} */}
+      <>
+        <h1>Welcome to my website</h1>
+        <p>Share this content with your friends on WhatsApp!</p>
+        <WhatsAppContactShareButton
+          text="Check out this awesome content!"
+          url="https://yourwebsite.com/path-to-content"
+        />
+      </>
     </div>);
 }
 

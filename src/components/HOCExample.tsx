@@ -47,7 +47,7 @@ const withAuthentication = <Props extends HOCProps>(WrappedComponent: FunctionCo
 };
 
 const UserProfile: React.FunctionComponent<UserProps> = ({ user }) => {
-    return <div>Welcome, {user?.name}!</div>;
+    return <div>Welcome back, {user?.name}!</div>;
 };
 
 const EnhancedUserProfile = withAuthentication(UserProfile);
