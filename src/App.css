@@ -1,6 +1,6 @@
 .container {
-  width: 200px;
-  height: 200px;
+  width: 2000px;
+  height: 2000px;
   perspective: 500px;
   margin: 100px;
 }
