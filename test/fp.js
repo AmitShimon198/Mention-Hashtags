@@ -50,7 +50,7 @@ transformAndDisplay(5, timesThree);
     }
     const add1 = x => x + 1;
     const double = x => x * 2;
-    compose(add1, double)(2);  // 5
+    compose(add1, double)(2);
 })();
 
 //function factory
@@ -61,5 +61,5 @@ const multiplier = factor => {
 const double = multiplier(2);
 const triple = multiplier(3);
 
-console.log(double(4));  // 8
+console.log(double(4));
 console.log(triple(4));
