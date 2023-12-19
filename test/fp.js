@@ -4,9 +4,9 @@ const greet = function (name) {
 };
 console.log(greet("Amit Shimon"));
 
-const add = (x, y) => x + y;
+const add12 = (x, y) => x + y;
 const subtract = (x, y) => x - y;
-const operations = [add, subtract];
+const operations = [add12, subtract];
 
 //some place else in the code
 (function () {
@@ -25,33 +25,20 @@ const operationsObj = {
     const { add, subtract } = operationsObj;
     console.log(add(3, 2));
     console.log(subtract(3, 2));
-})()
+})();
 
 //High order function.
 (function () {
-const timesTwo = x => x * 2;
-const timesThree = x => x * 3;
+    const timesTwo = x => x * 2;
+    const timesThree = x => x * 3;
 
-const transformAndDisplay = (num, operationFn) => {
-    console.log(operationFn(num));
-};
+    const transformAndDisplay = (num, operationFn) => {
+        console.log('HOF', operationFn(num));
+    };
 
-transformAndDisplay(5, timesTwo);
-transformAndDisplay(5, timesThree);
+    transformAndDisplay(5, timesTwo);
+    transformAndDisplay(5, timesThree);
 })()
-
-//Function composition
-(function () {
-    function compose(firstFunction, secondFunction) {
-        return function (value) {
-            const intermediateValue = secondFunction(value);
-            return firstFunction(intermediateValue);
-        };
-    }
-    const add1 = x => x + 1;
-    const double = x => x * 2;
-    compose(add1, double)(2);
-})();
 
 //function factory
 const multiplier = factor => {
@@ -63,3 +50,30 @@ const triple = multiplier(3);
 
 console.log(double(4));
 console.log(triple(4));
+
+
+// //Pure functions
+const pureFunction = (x, y) => {
+    return x + y
+}
+
+const impureFunction = (x, y) => {
+    console.log('Side Effect');
+    console.log(x, y);
+    return x + y
+}
+
+
+
+//Function composition
+(function () {
+    const compose = (firstFunction, secondFunction) => {
+        return function (value) {
+            const intermediateValue = secondFunction(value);
+            return firstFunction(intermediateValue);
+        };
+    }
+    const add1 = x => x + 1;
+    const double = x => x * 2;
+    console.log('compose', compose(add1, double)(2));
+})()

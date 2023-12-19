@@ -15,6 +15,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/home';
 import About from './components/about';
 import Contact from './components/contact';
+import { AnimatedBox } from './components/AnimatedBox';
 function reducer(_: any, { type, payload }: any) {
   switch (type) {
     case 1:
@@ -45,6 +46,9 @@ function App() {
   return (
 
     <div className="container">
+      <AnimatedBox>
+        <div style={{ background: 'red' }}>Hi</div>
+      </AnimatedBox>
       {/* <TransitionExample /> */}
       {/* <UseCallbackUseMemoExample permission={Permissions.READ} userId={'1'}/> */}
       {/* <EnhancedUserProfile userName={'amit'} pass={'pass'}/> */}
@@ -64,7 +68,7 @@ function App() {
         {isLoading && 'Loading'} */}
         {/*
       */}
-        <h1>Welcome to my website</h1>
+        {/* <h1>Welcome to my website</h1>
         <p>Share this content with your friends on WhatsApp!</p>
         <WhatsAppContactShareButton
           text="Check out this awesome content!"
@@ -72,7 +76,7 @@ function App() {
           // url="https://yourwebsite.com/path-to-content"
         >
          <>Share</> 
-        </WhatsAppContactShareButton>
+        </WhatsAppContactShareButton> */}
       </>
     </div>);
 }
