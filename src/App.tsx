@@ -16,6 +16,23 @@ import Home from './components/home';
 import About from './components/about';
 import Contact from './components/contact';
 import { AnimatedBox } from './components/AnimatedBox';
+import ConveyorBelt from './components/animation';
+interface Card {
+  id: number;
+  content: string;
+}
+
+const generateMockData = (numCards: number): Card[] => {
+  return Array.from({ length: numCards }, (_, index) => ({
+    id: index,
+    content: `Card Content ${index + 1}`
+  }));
+}
+
+// Example usage
+const mockCards = generateMockData(4);
+console.log(mockCards);
+
 function reducer(_: any, { type, payload }: any) {
   switch (type) {
     case 1:
@@ -46,9 +63,10 @@ function App() {
   return (
 
     <div className="container">
-      <AnimatedBox>
+      {/* <AnimatedBox>
         <div style={{ background: 'red' }}>Hi</div>
-      </AnimatedBox>
+      </AnimatedBox> */}
+      <ConveyorBelt cards={mockCards} />
       {/* <TransitionExample /> */}
       {/* <UseCallbackUseMemoExample permission={Permissions.READ} userId={'1'}/> */}
       {/* <EnhancedUserProfile userName={'amit'} pass={'pass'}/> */}
